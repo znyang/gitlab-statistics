@@ -1,0 +1,41 @@
+apply from: "${CONFIG_URL}/loadConfig.gradle"
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'http://maven.oschina.net/content/groups/public/' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // A Gradle plugin to report the number of method references in your APK on every build.
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.3.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+    // Exclude the version that the android plugin depends on.
+    configurations.classpath.exclude group: 'com.android.tools.external.lombok'
+}
+
+allprojects {
+    group = "com.zen.android.gitlab.statistics"
+    version = "0.1"
+
+    ext {
+        androidApplicationId = 'com.zen.android.gitlab.statistics.sample'
+        androidVersionCode = 1
+        androidVersionName = "0.1"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    repositories {
+        jcenter()
+        maven { url 'http://maven.oschina.net/content/groups/public/' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

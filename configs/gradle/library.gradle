@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+
+apply from: "${cacheConfigs}/gradle/dependencies.gradle"
+apply from: "${cacheConfigs}/gradle/checkstyle.gradle"
+//apply from: "${cacheConfigs}/gradle/findbugs.gradle"
+
+apply from: "${cacheConfigs}/gradle/android.gradle"
+apply from: "${cacheConfigs}/custom/base.gradle"
+apply from: "${cacheConfigs}/custom/library.gradle"
+apply from: "${cacheConfigs}/gradle/retrolambda.gradle"

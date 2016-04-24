@@ -1,0 +1,21 @@
+apply from: "${cacheConfigs}/gradle/library.gradle"
+
+android {
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    provided libs.supportAnnotation
+    compile libs.retrofitWithJackson
+    testCompile 'junit:junit:4.12'
+}

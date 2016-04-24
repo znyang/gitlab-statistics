@@ -1,0 +1,194 @@
+<!--
+  Checkstyle configuration that checks the sun coding conventions from:
+    - the Java Language Specification at
+      http://java.sun.com/docs/books/jls/second_edition/html/index.html
+    - the Sun Code Conventions at http://java.sun.com/docs/codeconv/
+    - the Javadoc guidelines at
+      http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
+    - the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html
+    - some best practices
+  Checkstyle is very configurable. Be sure to read the documentation at
+  http://checkstyle.sf.net (or in your downloaded distribution).
+  Most Checks are configurable, be sure to consult the documentation.
+  To completely disable a check, just comment it out or delete it from the file.
+  Finally, it is worth reading the documentation.
+-->
+<!DOCTYPE module PUBLIC
+    "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="fileExtensions" value="java"/>
+    <property name="charset" value="UTF-8"/>
+    <module name="TreeWalker">
+        <!-- 定义一行所能容许的字符数-->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+            <message key="maxLineLen" value="每一行的最大长度为{0}个字符，当前{1}个字符'。"/>
+        </module>
+        <!--检查方法的行数-->
+        <module name="MethodLength">
+            <!--默认包含空行。作用于普通函数、构造函数-->
+            <property name="max" value="66"/>
+            <property name="countEmpty" value="true"/>
+            <message key="maxLen.method" value="方法行数不可以超过{0}行，当前{1}行。"/>
+        </module>
+
+        <!--检查循环控制变量是否被修改-->
+        <module name="ModifiedControlVariable"/>
+        <!--检查在判断字符串是否相等时是否使用了正确的形式(equals)-->
+        <module name="StringLiteralEquality"/>
+        <!--检查一个类或者接口声明的部分出现的顺序建议由。-->
+        <module name="DeclarationOrder"/>
+        <!--检查一次声明多个变量时，变量是否在同一行或者在同一个语句中-->
+        <module name="MultipleVariableDeclarations">
+            <message key="multiple.variable.declarations.comma" value="每行只能声明一个变量"/>
+            <message key="multiple.variable.declarations" value="每行只允许定义一个变量"/>
+        </module>
+        <!--检查变量是否对外部可见-->
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
+        </module>
+
+
+        <!--定义包名的命名规则-->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <message key="name.invalidPattern" value="包名 ''{0}''要匹配 ''{1}''的格式（所有字母全部小写）."/>
+        </module>
+        <!--定义类命名规则-->
+        <module name="TypeName">
+            <property name="tokens" value="CLASS_DEF"/>
+            <property name="format" value="^[A-Z][a-zA-Z]*$"/>
+            <message key="name.invalidPattern" value="类名 ''{0}'' 要符合 ''{1}''的格式（建议每个单词的首字母大写）."/>
+        </module>
+        <!--定义接口的命名规则-->
+        <module name="TypeName">
+            <property name="tokens" value="INTERFACE_DEF"/>
+            <property name="format"
+                      value="^I[A-Z][a-zA-Z]*$|^[A-Z][a-zA-Z]*.Provider|^[A-Z][a-zA-Z]*.able|^[A-Z][a-zA-Z]*.Listener|^[A-Z][a-zA-Z]*.ible"/>
+            <message key="name.invalidPattern" value="接口命名 ''{0}'' 要符合 ''{1}''的格式"/>
+        </module>
+        <!--定义方法名的命名规则-->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="方法名 ''{0}'' 必须要满足 ''{1}''的格式，建议除首单词外每个单词的首字母大写."/>
+            <message key="method.name.equals.class.name" value="方法名 ''{0}'' 不能等于类名."/>
+        </module>
+        <!--定义最多有多少个参数-->
+        <module name="ParameterNumber">
+            <property name="max" value="5"/>
+            <message key="name.invalidPattern" value="方法''{0}''的参数个数已超过5个，建议重构."/>
+        </module>
+        <!--定义非静态成员变量的命名规则-->
+        <module name="MemberName">
+            <property name="format" value="^m[A-Z][a-zA-Z]*$"/>
+            <message key="name.invalidPattern" value="变量 ''{0}'' 要以''m''开头（建议除首单词外的单词的首字母小写）."/>
+            <!--<message key="name.invalidPattern"-->
+            <!--value="成员变量的命名必须以m开始"/>-->
+        </module>
+        <!--定义全局常量的命名规则-->
+        <module name="ConstantName">
+            <message key="name.invalidPattern" value="常量 ''{0}'' 要匹配''{1}''的格式（字母全部大写可以包含_）."/>
+        </module>
+        <!--: 定义局部常量的命名规则-->
+        <module name="LocalFinalVariableName">
+            <message key="name.invalidPattern"
+                     value="局部final变量 ''{0}'' 要匹配''{1}''的格式."/>
+        </module>
+        <!--定义局部变量的命名规则-->
+        <module name="LocalVariableName">
+            <property name="tokens" value="VARIABLE_DEF"/>
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+            <message key="name.invalidPattern"
+                     value="局部变量 ''{0}'' 要匹配''{1}''的格式（建议除首单词外的单词的首字母大写）."/>
+        </module>
+        <!--定义静态变量的命名规则-->
+        <module name="StaticVariableName">
+            <property name="format" value="^s[A-Z][a-zA-Z]*$"/>
+            <message key="name.invalidPattern"
+                     value="静态非final变量 ''{0}'' 要以s开头（建议除首单词外的单词的首字母大写）."/>
+        </module>
+        <!--定义抽象类的命名规则-->
+        <module name="AbstractClassName">
+            <property name="format" value="^Abs.+$|^Base.+$|^Abstract.+$"/>
+            <message key="illegal.abstract.class.name" value="抽象类''{0}''要以Abs/Base/Abstract开头"/>
+        </module>
+
+        <!--检查是否有空代码块-->
+        <module name="EmptyBlock">
+            <message key="block.empty" value="''{0}''空的代码块."/>
+            <message key="block.noStmt" value="至少有一条代码语句."/>
+        </module>
+
+        <!--检查修饰符的顺序-->
+        <module name="ModifierOrder">
+            <message key="mod.order" value="''{0}'' 修饰符顺序颠倒 ."/>
+        </module>
+        <!--定义左大括号'{'显示位置，eol在同一行显示，nl在下一行显示-->
+        <module name="LeftCurly">
+            <property name="severity" value="warning"/>
+            <message key="line.previous" value="左侧大括号必须放在前一行代码的行尾，不计入到80个字符内"/>
+        </module>
+        <!--检查是否应该使用括号的地方没有加括号-->
+        <module name="NeedBraces">
+            <property name="severity" value="warning"/>
+            <message key="needBraces" value="代码中缺失大括号"/>
+        </module>
+        <!--检查匿名内部类最多容许的长度-->
+        <module name="AnonInnerLength">
+            <property name="max" value="60"/>
+            <message key="maxLen.anonInner" value="匿名内部类行数为''{1}''，已超过''{2}''行"/>
+        </module>
+
+        <!--右大括号是否单独一行显示-->
+        <module name="RightCurly">
+            <property name="severity" value="warning"/>
+            <property name="option" value="alone"/>
+            <property name="tokens"
+                      value="METHOD_DEF, CLASS_DEF, CTOR_DEF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR"/>
+            <message key="line.alone" value="右侧大括号必须放在单独一行"/>
+            <message key="line.new" value="右侧大括号必须放在一个新行"/>
+            <message key="line.same" value="右侧大括号与下一语句放在同一行"/>
+        </module>
+        <!--只定义了静态方法的类不应该定义一个公有的构造器-->
+        <module name="HideUtilityClassConstructor">
+            <message key="hide.utility.class" value="工具类(只包含静态属性和静态方法)不应该有一个公共的或者默认构造函数。"/>
+        </module>
+        <!--检查是否导入的包没有使用-->
+        <module name="UnusedImports">
+            <message key="import.unused" value="导入的''{0}''并没有使用"/>
+        </module>
+        <!--检查代码的缩进是否符合要求-->
+        <module name="Indentation">
+            <property name="severity" value="warning"/>
+            <message key="indentation.error" value="缩进了{1}个空格，正确应该缩进 {2}个空格。"/>
+            <message key="indentation.child.error" value="缩进了{1}个空格，正确应该缩进 {2}个空格。"/>
+        </module>
+        <module name="UpperEll">
+            <message key="upperEll" value="应该使用大写的 ''L''."/>
+        </module>
+        <!--检查switch语句是否忘记了default标签-->
+        <module name="MissingSwitchDefault">
+            <message key="missing.switch.default" value="''switch''语句后边没有''default'' 语句."/>
+        </module>
+
+        <!-- warning -->
+        <!--检查注释是否单独一行-->
+        <module name="TrailingComment">
+            <property name="severity" value="warning"/>
+            <message key="trailing.comments" value="请使用单行注释"/>
+        </module>
+        <module name="SimplifyBooleanExpression">
+            <property name="severity" value="warning"/>
+            <message key="simplify.expression" value="请简化一下表达式."/>
+        </module>
+        <module name="SimplifyBooleanReturn">
+            <property name="severity" value="warning"/>
+            <message key="simplify.boolreturn" value="条件逻辑可去掉."/>
+        </module>
+    </module>
+
+</module>

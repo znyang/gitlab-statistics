@@ -1,0 +1,25 @@
+apply plugin: 'maven'
+
+apply from: "${cacheConfigs}/gradle/deployment.gradle"
+apply from: "${cacheConfigs}/gradle/androidJarBuild.gradle"
+
+uploadJarArchives {
+    repositories {
+        mavenDeployer {
+            def conf = project.ext
+            def deployName = project.properties['deployName']
+            if (deployName == null) {
+                deployName = this.name
+            }
+            repository(url: "${conf.deployReleaseUrl}") {
+                authentication(userName: "${conf.nexusUsername}", password: "${conf.nexusPassword}")
+            }
+            snapshotRepository(url: "${conf.deploySnapshotUrl}") {
+                authentication(userName: "${conf.nexusUsername}", password: "${conf.nexusPassword}")
+            }
+            pom.version = "${this.version}"
+            pom.groupId = "${this.group}"
+            pom.artifactId = "${deployName}"
+        }
+    }
+}

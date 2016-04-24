@@ -1,0 +1,19 @@
+apply plugin: 'checkstyle'
+
+dependencies {
+    checkstyle('com.puppycrawl.tools:checkstyle:6.5')
+}
+
+task checkstyle(type: Checkstyle) {
+	def cachePath = "${cacheConfigs}/checkstyle"
+	def file = new File("${cachePath}/nd_checkstyle.xml")
+	def fileSuppressions = new File("${cachePath}/checkstyle_suppressions.xml")
+    
+    configFile file
+    configProperties.checkstyleSuppressionsPath = fileSuppressions.absolutePath
+    // Where is my suppressions file for checkstyle is...
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+}

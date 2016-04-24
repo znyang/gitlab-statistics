@@ -1,0 +1,4 @@
+ext {
+    deployReleaseUrl = "file:///e:/repo"
+    deploySnapshotUrl = "file:///e:/repo_snapshot"
+}

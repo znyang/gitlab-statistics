@@ -1,0 +1,4 @@
+apply plugin: 'com.android.library'
+
+apply from: "${cacheConfigs}/gradle/dependencies.gradle"
+apply from: "${cacheConfigs}/gradle/android.gradle"

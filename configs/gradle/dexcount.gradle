@@ -1,0 +1,12 @@
+// A Gradle plugin to report the number of method references in your APK on every build.
+// https://github.com/KeepSafe/dexcount-gradle-plugin
+apply plugin: 'com.getkeepsafe.dexcount'
+
+dexcount {
+    includeClasses = false
+    includeFieldCount = true
+    //includeTotalMethodCount = false
+    printAsTree = false
+    orderByMethodCount = true
+    verbose = false
+}
