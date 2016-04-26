@@ -17,5 +17,8 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     provided libs.supportAnnotation
     compile libs.retrofitWithJackson
-    testCompile 'junit:junit:4.12'
+
+    testCompile test.junit
+    testCompile test.mockito
+    testCompile test.robolectric
 }

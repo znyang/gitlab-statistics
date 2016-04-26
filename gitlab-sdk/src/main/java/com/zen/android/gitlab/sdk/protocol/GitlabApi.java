@@ -28,7 +28,7 @@ public interface GitlabApi {
      * @param user
      * @return
      */
-    @GET("/u/${userName}/calender")
-    String getCalendar(@Path("userName") String user);
+    @GET("/u/{user}/calendar")
+    String getCalendar(@Path("user") String user);
 
 }

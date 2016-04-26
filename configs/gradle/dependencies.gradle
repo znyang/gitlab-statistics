@@ -4,7 +4,7 @@
 
 ext {
     //Android
-    androidBuildToolsVersion = "23.0.2"
+    androidBuildToolsVersion = "22.0.1"
     androidMinSdkVersion = getPropertyOrDefault("MIN_SDK_VERSION", 9)
     androidTargetSdkVersion = getPropertyOrDefault("TARGET_SDK_VERSION", 22)
     androidCompileSdkVersion = 23
