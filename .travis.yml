@@ -12,7 +12,7 @@ before_install:
   - export JAVA_HOME=$JAVA8_HOME
 
 script:
-  - ./gradlew clean build jacocoTestReport --stacktrace
+  - ./gradlew clean build jacocoReport --stacktrace
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
