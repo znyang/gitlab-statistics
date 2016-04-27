@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
  */
 public class Calendar {
 
-    private static String PATTERN_CODE = "new Calendar\\([^{]*(\\{[^}]*\\}),([^,]*),([^,]*),([^," +
-            "]*)\\)";
+    private static final String PATTERN_CODE = "new Calendar\\([^{]*(\\{[^}]*\\}),([^,]*),([^,]*)" +
+            ",([^,]*)\\)";
 
     private List<Day> mDays;
     private int mTotalCount = -1;
