@@ -1,1 +1,1 @@
-include ':app', ':gitlab-sdk'
+include ':gitlab-sdk'
